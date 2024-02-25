@@ -1,6 +1,6 @@
 :root {
-  --body-width: 992px;
-  --text-width: 620px;
+  --body-width: 800px;
+  /*--text-width: 620px;*/ /*去掉文档宽度限制,由crop-v控制*/
   --bg-body: white;
   --bg-block: #f9f9f9;
   --border-color: #ddd;
@@ -69,12 +69,13 @@ footer {
 /* code */
 pre code {
   display: block;
-  padding: 1em;
+  padding: 1em 0; /*代码左右尽可能靠边*/
   overflow-x: auto;
 }
+/*代码块无需边框*/
 pre code, img[src$="#border"] {
-  border: 1px solid var(--border-color);
-  box-shadow: var(--box-shadow);
+  /*border: 1px solid var(--border-color);*/
+  /*box-shadow: var(--box-shadow);*/
 }
 pre code:not([class]) {
   background: none;
@@ -82,9 +83,10 @@ pre code:not([class]) {
 code {
   hyphens: none;
 }
+/*todo: 优化代码换行设置*/
 pre code, pre code:hover {
   white-space: pre-wrap;
-  word-break: break-all;
+  /*word-break: break-all;*/
 }
 
 /* misc elements */
@@ -117,9 +119,9 @@ nav a, footer a, .archive a, sup a {
 .single .main h2 {
   border-bottom: 1px solid var(--border-color);
 }
+
 .single .main h3 {
-  font-variant: small-caps;
-  text-align: center;
+  text-align: left;
 }
 li {
   margin: 4px 0;
@@ -135,8 +137,10 @@ img, iframe, video {
   background-color: var(--bg-block);
   padding: .5em;
 }
+
 #TableOfContents > ul {
   margin: 0 auto;
+  padding-inline-start: 20px; /*文章目录缩进不用太大*/
 }
 #TableOfContents > ul > li > ul li {
   margin-right: 2em;
@@ -145,13 +149,15 @@ blockquote, .toc-list, .toc-list ul {
   border-left: 2px solid var(--border-color);
   padding-left: 1em;
 }
+
 .single blockquote {
   background: var(--bg-block);
   border-left-width: 5px;
   padding: 3px 1em 3px;
+  margin-inline: 0; /*引用行左右margin去掉*/
 }
 .post-nav {
-  margin-top: 1rem;
+  margin-top: 2rem; /*上一篇下一篇下移多点*/
 }
 .post-nav span {
   width: calc(50% - 1em);
@@ -196,20 +202,20 @@ thead, tfoot, tr:nth-child(even), code {
   list-style: none;
   margin-left: 1em;
 }
+
 .toc-line, .subtitle, .meta-line {
   font-weight: normal;
+  font-size: small; /*日期和categories、tag字体保持一致*/
 }
 .author + .date::before {
   content: " / ";
 }
-h1.title, .toc-line > a {
-  font-style: italic;
-}
+
 h1.title {
   margin-top: 1em;
 }
 h1.title::before {
-  content: "❧";
+  /*content: "❧";*/
   font-style: normal;
   font-weight: normal;
   font-size: 6em;
@@ -241,9 +247,10 @@ h1.title::before {
   body {
     padding: 3.5em 2.5em;
   }
+
   .main {
     margin: auto;
-    width: var(--text-width);
+    /*width: var(--text-width);*/
   }
   pre, table, .fullwidth {
     width: calc(min(100vw, var(--body-width)) - 5rem);
@@ -294,7 +301,7 @@ h1.title::before {
     padding: 0 2em;
   }
   h1.title {
-    margin-top: 2em;
+    margin-top: 1em;
   }
   h1.title::before {
     font-size: 9em;
@@ -305,6 +312,7 @@ h1.title::before {
   }
 }
 
+/*浅色、深色模式*/
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-body: #dedad6;
