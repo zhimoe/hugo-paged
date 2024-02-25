@@ -189,7 +189,7 @@ thead, tfoot, tr:nth-child(even), code {
 .dots {
   border-bottom: 2px dotted var(--border-color);
   margin: 0 .5em .5em;
-  min-width: 10rem;
+  min-width: 1rem;
   flex-grow: 1;
 }
 .page-num {
@@ -249,7 +249,7 @@ h1.title::before {
   }
 
   .main {
-    margin: auto;
+    /*margin: auto;*/
     /*width: var(--text-width);*/
   }
   pre, table, .fullwidth {
