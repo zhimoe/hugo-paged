@@ -25,14 +25,14 @@
 {{ end }}
 {{- if $has_code -}}
 <script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/copy-button.min.js" defer></script>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@xiee/utils/css/copy-button.min.css">
+<!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@xiee/utils/css/copy-button.min.css"> -->
 {{ end }}
 {{- if (findRE `<p>(—|―|---|&mdash;)` .Content | len) -}}
 <script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/right-quote.min.js" defer></script>
 {{ end }}
 {{- if or (in .Content "</kbd>") (in (replace .Content "</code></pre>" "") "</code>") -}}
 <script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/key-buttons.min.js" defer></script>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@xiee/utils/css/key-buttons.min.css">
+<!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@xiee/utils/css/key-buttons.min.css"> -->
 {{ end }}
 {{- if (in .Content `class="footnotes"`) -}}
 <script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/fix-footnote.min.js" defer></script>
