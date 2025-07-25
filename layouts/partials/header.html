@@ -44,7 +44,32 @@
     <link rel="stylesheet" href="{{ printf "css/%s.css" . | relURL }}">
     {{ end }}
     {{ partial "head_custom.html" . }}
+
+    {{ if (isset .Site.Params.Statistics "google_analytics") }}
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.Statistics.google_analytics}}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ .Site.Params.Statistics.google_analytics }}');
+    </script>
+    {{ end }}
   </head>
+
+  {{ if (isset .Site.Params.Statistics "cloudflare_worker") }}
+  <!-- cloudflare worker-->
+  <script>
+      const apiEndpoint = 'https://{{ .Site.Params.Statistics.cloudflare_worker}}.workers.dev/write';
+      const payload = {
+          'url': document.location.href,
+          'title': document.title,
+          'referrer': window.frames.top.document.referrer,
+      };
+      fetch(`${apiEndpoint}?${new URLSearchParams(payload)}`, {mode: 'no-cors'})
+          .catch(console.log);
+  </script>
+  {{ end }}
 
   {{ $section := (replaceRE "^/([^/]+)/.*" "$1" .RelPermalink) }}
   {{ if eq $section "/" }}{{ $section = "" }}{{ end }}
@@ -79,5 +104,7 @@
       {{- $mclass = delimit $mclass " " -}}
       <span{{ with $mclass }} class="{{ . }}"{{ end }}><a href="{{ relURL .URL }}">{{ .Name }}</a></span>
       {{ end }}
+
+
     </div>
     </nav>
