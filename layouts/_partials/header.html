@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{ $pageTitle := cond (eq .Kind "term") .LinkTitle .Title }}
     {{ if eq .RelPermalink "/" }}
     <title>{{ .Site.Title }}</title>
     <meta property="og:title" content="{{ .Site.Title }}">
     <meta property="og:type" content="website">
     {{ else }}
-    <title>{{ .Title }}{{ with .Params.subtitle }} - {{ . }} {{ end }} - {{ .Site.Title }}</title>
-    <meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}">
+    <title>{{ $pageTitle }}{{ with .Params.subtitle }} - {{ . }} {{ end }} - {{ .Site.Title }}</title>
+    <meta property="og:title" content="{{ $pageTitle }} - {{ .Site.Title }}">
     {{ end }}
     <meta name="twitter:card" content="summary">
     {{ if eq .RelPermalink "/" }}

@@ -11,10 +11,11 @@
     {{ end }}
     <p class="more-posts"><a href="{{ .RelPermalink }}">查看全部文章 →</a></p>
   </section>
-  {{ end }}
+{{ end }}
 </div>
 {{ else }}
-<h1 class="title">{{ .Title | markdownify }}{{ if eq .Kind "term" }}<span class="small subtitle"> | <a href="{{ urlize .Type | relURL }}/">{{ .Type }}</a></span>{{ end }}</h1>
+{{ $pageTitle := cond (eq .Kind "term") .LinkTitle .Title }}
+<h1 class="title">{{ $pageTitle | markdownify }}{{ if eq .Kind "term" }}<span class="small subtitle"> | <a href="{{ urlize .Type | relURL }}/">{{ .Type }}</a></span>{{ end }}</h1>
 {{ with .Params.subtitle }}<h2 class="subtitle">{{ . | markdownify }}</h2>{{ end }}
 <div class="main{{ if not .Content }} archive{{ end }}">
   {{ .Content }}
