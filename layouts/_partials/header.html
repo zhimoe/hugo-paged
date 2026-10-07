@@ -60,7 +60,8 @@
   {{ $section := (replaceRE "^/([^/]+)/.*" "$1" .RelPermalink) }}
   {{ if eq $section "/" }}{{ $section = "" }}{{ end }}
   {{ $.Scratch.Set "section" $section }}
-  <body class="{{ if .IsPage }}single{{ end }}{{ with $section }} {{ . }}{{ end }}{{ if (in .Content `<div class="footnotes"`) }} has-sidenotes{{ end }}{{ with .Params.page_class }} {{ . }}{{ end }}">
+  {{ $class := complement (slice nil "") (slice (cond .IsPage "single" "") $section (cond (in .Content `<div class="footnotes"`) "has-sidenotes" "") .Params.page_class) }}
+  {{ if len $class }}<body class="{{ delimit (uniq $class) " " }}">{{ else }}<body>{{ end }}
     {{ if (isset .Site.Params.Statistics "cloudflare_worker") }}
     <!-- cloudflare worker-->
     <script>
