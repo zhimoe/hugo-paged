@@ -122,6 +122,10 @@ footer {
   margin-top: 2rem;
 }
 
+.archive > .archive-year-group:first-child .archive-year {
+  margin-top: 0;
+}
+
 .archive-year {
   border-bottom: 1px solid var(--border-color);
   padding-bottom: .35rem;
@@ -372,16 +376,21 @@ h1.title {
   margin-top: 1em;
 }
 
-h1.title::before {
+body.list-page::before {
   content: "❦";
   font-style: normal;
   font-weight: normal;
-  font-size: 2em;
+  font-size: 3.25em;
+  line-height: 1;
   color: var(--border-color);
-  opacity: .5;
+  opacity: .18;
   position: absolute;
-  inset: -.15em 0;
+  top: 4.5rem;
+  right: 1.25rem;
+  transform: rotate(-8deg);
   z-index: -1;
+  pointer-events: none;
+  user-select: none;
 }
 
 .small,
@@ -464,9 +473,10 @@ li li {
     margin-left: 1em;
   }
 
-  h1.title::before {
-    font-size: 6em;
-    inset: 0;
+  body.list-page::before {
+    font-size: 12.75em;
+    top: 6.75rem;
+    right: 3.25rem;
   }
 
   .logo img,
@@ -496,11 +506,6 @@ li li {
 
   h1.title {
     margin-top: 1em;
-  }
-
-  h1.title::before {
-    font-size: 9em;
-    inset: -.1em 0;
   }
 
   pre code {
