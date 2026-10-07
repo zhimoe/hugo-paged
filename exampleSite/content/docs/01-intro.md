@@ -15,34 +15,35 @@ The paged.js library is awesome. Its website is also beautiful.
 
 ### The crop marks
 
-I love the crop marks. I couldn't imagine that they were made from three rectangles:
+I love the crop marks. They are drawn by two absolutely positioned layers:
 
 ```html
 <div class="crop-h"></div> <!-- horizontal lines -->
 <div class="crop-v"></div> <!-- vertical lines -->
-<div class="crop-c"></div> <!-- cover some segments -->
 ```
 
-Make their position absolute, and shrink them a little bit:
+Each layer uses four one-color gradients as short line segments. The horizontal
+layer is inset vertically, and the vertical layer is inset horizontally:
 
 ```css
-.crop-h, .crop-v, .crop-c {
+.crop-h, .crop-v {
   position: absolute;
-  z-index: -1;
 }
 .crop-h {
   inset: 2em 0;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
+  background:
+    linear-gradient(currentColor, currentColor) left top / 1em 1px no-repeat,
+    linear-gradient(currentColor, currentColor) right top / 1em 1px no-repeat,
+    linear-gradient(currentColor, currentColor) left bottom / 1em 1px no-repeat,
+    linear-gradient(currentColor, currentColor) right bottom / 1em 1px no-repeat;
 }
 .crop-v {
   inset: 0 2em;
-  border-left: 1px solid;
-  border-right: 1px solid;
-}
-.crop-c {
-  inset: 1em;
-  border: 1.5em solid white;
+  background:
+    linear-gradient(currentColor, currentColor) left top / 1px 1em no-repeat,
+    linear-gradient(currentColor, currentColor) right top / 1px 1em no-repeat,
+    linear-gradient(currentColor, currentColor) left bottom / 1px 1em no-repeat,
+    linear-gradient(currentColor, currentColor) right bottom / 1px 1em no-repeat;
 }
 ```
 

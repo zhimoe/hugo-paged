@@ -402,7 +402,7 @@ li li {
     margin-left: calc(50% + 2.5rem - min(100vw, var(--body-width)) / 2);
   }
 
-  body > :not(.crop-h, .crop-v, .crop-c) {
+  body > :not(.crop-h, .crop-v) {
     position: relative;
     z-index: 1;
   }
@@ -431,14 +431,6 @@ li li {
       linear-gradient(var(--crop-color), var(--crop-color)) right top / 1px 1em no-repeat,
       linear-gradient(var(--crop-color), var(--crop-color)) left bottom / 1px 1em no-repeat,
       linear-gradient(var(--crop-color), var(--crop-color)) right bottom / 1px 1em no-repeat;
-  }
-
-  .crop-c {
-    position: absolute;
-    inset: 1em;
-    border: 1.5em solid var(--bg-body);
-    z-index: -1;
-    display: none;
   }
 
   .menu {
