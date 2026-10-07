@@ -287,7 +287,7 @@ blockquote {
   background: var(--bg-block);
   border-left-width: 5px;
   padding: 3px 1em 3px;
-  /*引用行左右margin去掉*/
+  /*引用行左右 margin 去掉*/
   margin-inline: 0;
 }
 
@@ -358,7 +358,7 @@ code {
 .subtitle,
 .meta-line {
   font-weight: normal;
-  /*日期和categories、tag字体保持一致*/
+  /*日期和 categories、tag 字体保持一致*/
   font-size: small;
   /*日期的数字需要等宽*/
   font-variant-numeric: tabular-nums;
@@ -424,6 +424,7 @@ li li {
     margin-left: calc(50% + 2.5rem - min(100vw, var(--body-width)) / 2);
   }
 
+  /* crop-h / crop-v 除外，body 的所有直接子元素都上移一层 */
   body > :not(.crop-h, .crop-v) {
     position: relative;
     z-index: 1;
