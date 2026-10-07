@@ -127,6 +127,41 @@ footer {
   padding-bottom: .35rem;
 }
 
+/* search page */
+.search .main {
+  width: 100%;
+}
+
+.search #search-input {
+  width: 100%;
+  font-size: 1.2em;
+  padding: .5em;
+  border: 1px solid var(--border-color);
+  color: var(--ink-color);
+}
+
+.search #search-input:focus {
+  border-color: #aaa193;
+  outline: none;
+}
+
+.search .search-results b {
+  background-color: yellow;
+}
+
+.search .search-preview {
+  margin-left: 2em;
+}
+
+.search .main a,
+.search .main h2 {
+  border-bottom: none;
+}
+
+.search .article-meta .meta-line {
+  display: none;
+}
+
 .menu-bottom a+a::before {
   content: " · ";
 }
