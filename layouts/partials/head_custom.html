@@ -1,5 +1,6 @@
 <!-- <link rel="stylesheet" href="https://indestructibletype.com/fonts/Jost.css"> -->
-<link rel="icon" type="image/png" href="/img/logo.png">
-<link rel="apple-touch-icon" href="/img/logo.png" />
-<link rel="apple-touch-icon-precomposed" href="/img/logo.png" />
-<link rel="alternate" type="text/markdown" href="/llms.txt" title="AI-readable site overview" />
+{{ $logo := "img/logo.png" | relURL }}
+<link rel="icon" type="image/png" href="{{ $logo }}">
+<link rel="apple-touch-icon" href="{{ $logo }}" />
+<link rel="apple-touch-icon-precomposed" href="{{ $logo }}" />
+<link rel="alternate" type="text/markdown" href="{{ "llms.txt" | relURL }}" title="AI-readable site overview" />
