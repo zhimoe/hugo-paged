@@ -1,8 +1,8 @@
 {{ partial "header.html" . }}
 <div class="article-meta">
-<h2 class="title">{{ .Title | markdownify }}</h2>
+<h1 class="title">{{ .Title | markdownify }}</h1>
 {{ with .Params.subtitle }}<h2 class="subtitle">{{ . | markdownify }}</h2>{{ end }}
-<h3 class="meta-line">
+<div class="meta-line">
   <span>{{ partial "meta.html" . }}</span>
   <span class="term">
   {{ with .Params.categories }}
@@ -11,21 +11,24 @@
   {{ end }}
   {{ end }}
   {{ with .Params.tags }}
-  {{ $len := sub (len .) 1 }}
   {{ range $i, $v := . }}
   <a href="{{ relURL (print "tags/" $v "/" | urlize) }}" class="term-tag">#{{ $v }} </a>
   {{ end }}
   {{ end }}
   </span>
-</h3>
+</div>
 </div>
 
-<div class="main">
+<main class="main">
 {{ $toc := partial "toc.html" . }}
 {{ $toc_len := strings.Count `<li><a` $toc }}
-{{ if (default (ge $toc_len (default .Site.Params.toc_threshold 3)) .Params.show_toc) }}
+{{ $show_toc := ge $toc_len (default 3 .Site.Params.toc_threshold) }}
+{{ if isset .Params "show_toc" }}{{ $show_toc = .Params.show_toc }}{{ end }}
+{{ if $show_toc }}
 {{ .Scratch.Set "has_toc" true }}
-{{ if (default (ge $toc_len (default .Site.Params.toc_twocolumn 16)) .Params.toc_twocolumn) }}
+{{ $toc_twocolumn := ge $toc_len (default 16 .Site.Params.toc_twocolumn) }}
+{{ if isset .Params "toc_twocolumn" }}{{ $toc_twocolumn = .Params.toc_twocolumn }}{{ end }}
+{{ if $toc_twocolumn }}
 {{ replace $toc `<nav ` `<nav class="fullwidth twocolumn" ` | safeHTML }}
 {{ else }}
 {{ $toc }}
@@ -34,5 +37,5 @@
 {{ .Content }}
 {{ partial "post_nav.html" . }}
 {{ partial "main_extra.html" . }}
-</div>
+</main>
 {{ partial "footer.html" . }}

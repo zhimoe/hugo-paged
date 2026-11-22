@@ -4,18 +4,15 @@
 <span class="author">{{ . }}</span>
 {{ end }}
 
-{{ $date := .Date | time.Format "06-01-02" }}
-
-{{ if .Params.date }}
-    {{ $date = .Date | time.Format "06-01-02"  }}
-{{ else }}
-    {{ with .Lastmod }}
-    {{ $date = .Date | time.Format "06-01-02" }}
-    {{ end }}
+{{ $date := .Date }}
+{{ if $date.IsZero }}
+    {{ $date = .Lastmod }}
 {{ end }}
 
 {{ with $date }}
-<span class="date">{{ . }}</span>
+{{ if not .IsZero }}
+<span class="date">{{ . | time.Format "06-01-02" }}</span>
+{{ end }}
 {{ end }}
 
 {{ end }}

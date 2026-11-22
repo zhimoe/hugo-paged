@@ -1,1 +1,2 @@
-{{ replaceRE `(?s)(<nav [^>]+>)\s*<ul>\s*<li>(\s*<ul>.+?</ul>)\s*</li>\s*</ul>(\s*</nav>)` `$1$2$3` .TableOfContents | safeHTML }}
+{{ $toc := replaceRE `(?s)(<nav [^>]+>)\s*<ul>\s*<li>(\s*<ul>.+?</ul>)\s*</li>\s*</ul>(\s*</nav>)` `$1$2$3` .TableOfContents }}
+{{ replace $toc `<nav ` `<nav aria-label="目录" ` | safeHTML }}

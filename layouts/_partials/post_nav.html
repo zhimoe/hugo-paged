@@ -1,5 +1,5 @@
 {{ if .Section }}
-<nav class="post-nav fullwidth">
+<nav class="post-nav fullwidth" aria-label="上一篇和下一篇">
   <span class="post-nav-pre">{{ with .NextInSection }}<i class="i-mdi-chevron-double-left icon"></i><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>{{ end }}</span>
   <span class="post-nav-next">{{ with .PrevInSection }}<a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a> <i class="i-mdi-chevron-double-right icon"></i>{{ end }}</span>
 </nav>
