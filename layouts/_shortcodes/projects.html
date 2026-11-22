@@ -1,0 +1,18 @@
+{{- with .Page.Params.projects }}
+<div class="projects-grid">
+  {{- range . }}
+  <article class="project-card">
+    <h2 class="project-name"><a href="{{ .url }}">{{ .name }}</a></h2>
+    <p class="project-desc">{{ .description }}</p>
+    <div class="project-meta">
+      {{ with .tech }}<span class="project-tech">{{ delimit . " · " }}</span>{{ end }}
+      <span class="project-links">
+        {{- if .homepage }}{{ $label := default "官网" .homepage_label }}<a href="{{ .homepage }}">{{ $label }}</a>{{ end -}}
+        {{- with .releases }}<a href="{{ . }}">下载</a>{{ end -}}
+        <a class="project-github" href="{{ .url }}">GitHub</a>
+      </span>
+    </div>
+  </article>
+  {{- end }}
+</div>
+{{- end }}
